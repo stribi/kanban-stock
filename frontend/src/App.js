@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
 
 function App() {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:8080/api/items')
+      .then(res => res.json())
+      .then(data => setItems(data))
+      .catch(err => console.error('Error fetching items:', err));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ padding: '2rem' }}>
+      <h1>Items</h1>
+      <ul>
+        {items.map(item => (
+          <li key={item.id}>
+            <strong>{item.code}</strong>: {item.name}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
