@@ -18,6 +18,14 @@ function App() {
     .catch(err => console.error('Error fetching kits:',  err));
   },[]);
 
+  useEffect(() => {
+  fetch('http://localhost:8080/api/kits/with-items')
+    .then(res => res.json())
+    .then(data => setKits(data))
+    .catch(err => console.error('Error fetching kits with items:', err));
+}, []);
+
+
   return (
     <div>
     <div style={{ padding: '2rem' }}>
@@ -32,14 +40,28 @@ function App() {
     </div>
     <div style={{ padding: '2rem' }}>
       <h1>Kits</h1>
-      <ul>
+     {/*  <ul>
         {kits.map(kit => (
           <li key={kit.id}>
             <strong>{kit.code}</strong>: {kit.name}
           </li>
         ))}
-      </ul>
+      </ul> */}
+      {kits.map(kit => (
+  <div key={kit.id} style={{ marginBottom: '2rem' }}>
+    <h2>{kit.code}: {kit.name}</h2>
+    <ul>
+      {kit.items.map((item, index) => (
+        <li key={index}>
+          {item.code} – {item.name} ({item.quantity} pcs)
+        </li>
+      ))}
+    </ul>
+  </div>
+))}
     </div>
+  
+   
     </div>
   );
 }

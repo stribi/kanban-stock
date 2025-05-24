@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,6 +27,6 @@ public class Kit {
     private String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "kit")
+    @OneToMany(mappedBy = "kit", fetch = FetchType.EAGER)
     private List<KitItem> kitItems;
 }
