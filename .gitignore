@@ -1,0 +1,25 @@
+# Java
+target/
+*.class
+*.jar
+*.war
+*.iml
+*.log
+
+# IntelliJ
+.idea/
+*.iws
+*.ipr
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+.env
+
+# VSCode
+.vscode/
