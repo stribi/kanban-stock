@@ -2,6 +2,8 @@ package com.kanbanstock.backend.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +25,7 @@ public class Kit {
     private String code;
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "kit")
     private List<KitItem> kitItems;
 }
